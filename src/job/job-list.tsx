@@ -129,10 +129,14 @@ const JobList: React.FC = () => {
 const Wrapper = styled("div")`
   max-width: 700px;
   margin: 0 auto;
+  background-color: ${({ theme }) => theme.colors.nude[100]};
+  padding: 5px 10px;
+  min-height: 500px;
 `;
 
 const Title = styled("h2")`
   text-align: center;
+  ${({ theme }) => ({ ...theme.texts.h2 })}
 `;
 
 const List = styled("ul")`
