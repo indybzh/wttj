@@ -8,27 +8,34 @@ type JobListItemProps = {
   onClick: (job: Job) => void;
 };
 
-const JobListItem: React.FC<JobListItemProps> = ({ job, onClick }) => (
-  <Li>
-    <Article>
-      <div>
-        <JobName>{job.name}</JobName>
-        <JobInfos>
-          {job.contract_type.en} - {job.office.name}
-        </JobInfos>
-      </div>
-      <StyledButton variant="quaternary" onClick={onClick}>
-        See more
-      </StyledButton>
-    </Article>
-  </Li>
+const JobListItem: React.FC<JobListItemProps> = React.memo(
+  ({ job, onClick }) => (
+    <Li>
+      <Article>
+        <div>
+          <JobName>{job.name}</JobName>
+          <JobInfos>
+            {job.contract_type.en} - {job.office.name}
+          </JobInfos>
+        </div>
+        <StyledButton variant="quaternary" onClick={onClick}>
+          See more
+        </StyledButton>
+      </Article>
+    </Li>
+  )
 );
 
 const Li = styled("li")`
   list-style: none;
-  background: ${({ theme }) => theme.colors.light[700]};
+  background-color: ${({ theme }) => theme.colors.light[700]};
   padding: 25px 20px;
   margin-bottom: 10px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.light[900]};
+  }
 `;
 
 const Article = styled("article")`

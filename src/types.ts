@@ -10,6 +10,11 @@ export type Job = {
   office: {
     name: string;
   };
+  recruitment_process?: string;
+  websites_urls?: Array<{
+    website_reference: string;
+    url: string;
+  }>;
 };
 
 export type defaultStateFilters = {

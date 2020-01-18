@@ -3,15 +3,21 @@ import { createTheme } from "@welcome-ui/core";
 export default createTheme({
   texts: {
     h2: {
-      "font-weight": "500",
-      "line-height": "1em"
+      "font-weight": "500"
     },
     h3: {
       "font-weight": "500",
-      "font-size": "1em"
+      "font-size": "1.1em"
     }
   },
   buttons: {
+    tertiary: {
+      "border-radius": 2,
+      "background-color": "#73747B",
+      "border-width": "0px !important",
+      color: "white",
+      "font-size": "0.8rem"
+    },
     quaternary: {
       "background-color": "#E5E5E5",
       "text-transform": "none",
@@ -25,6 +31,9 @@ export default createTheme({
       "&:hover": {
         "background-color": "#eee !important",
         color: "black !important"
+      },
+      "&:focus": {
+        "background-color": "#E5E5E5 !important"
       }
     }
   },

@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useCallback } from "react";
 import styled from "styled-components";
+import Modal from "react-modal";
 
 import getJobs from "../api";
 import { Job, defaultStateFilters } from "../types";
-
 import JobFilters from "./job-filters";
 import JobListItem from "./job-list-item";
+import JobShow from "./job-show";
 
 const filtersReducer = (
   state: defaultStateFilters,
@@ -40,6 +41,8 @@ const JobList: React.FC = () => {
 
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
+
+  const [jobSelected, setJobSelected] = useState();
 
   const [filters, dispatch] = useReducer(filtersReducer, {
     searchInput: "",
@@ -104,6 +107,10 @@ const JobList: React.FC = () => {
     setFilteredJobs(newJobs);
   }, [filters]); // eslint-disable-line
 
+  const handleSelect = useCallback((job: Job) => {
+    setJobSelected(job);
+  }, []);
+
   return (
     <Wrapper>
       <Title>Our offers</Title>
@@ -115,9 +122,27 @@ const JobList: React.FC = () => {
           <JobFilters filters={filters} dispatch={dispatch} />
           <List>
             {filteredJobs.map((job: Job) => (
-              <JobListItem key={job.id} job={job} onClick={() => {}} />
+              <JobListItem
+                key={job.id}
+                job={job}
+                onClick={() => handleSelect(job)}
+              />
             ))}
           </List>
+          {jobSelected && (
+            <Modal
+              isOpen={true}
+              ariaHideApp={false}
+              style={modalStyle}
+              shouldCloseOnOverlayClick={true}
+              onRequestClose={() => setJobSelected(undefined)}
+            >
+              <JobShow
+                job={jobSelected}
+                onClose={() => setJobSelected(undefined)}
+              />
+            </Modal>
+          )}
         </>
       )}
     </Wrapper>
@@ -141,5 +166,15 @@ const List = styled("ul")`
   margin-top: 20px;
   padding: 0;
 `;
+
+const modalStyle = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.6)"
+  },
+  content: {
+    maxWidth: 736,
+    margin: "0 auto"
+  }
+};
 
 export default JobList;

@@ -29,6 +29,10 @@ const Layout = styled("div")`
   height: 100vh;
   margin: 0;
   padding-top: 100px;
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    padding-top: 0px;
+  }
 `;
 
 ReactDOM.render(<App />, document.getElementById("root"));
