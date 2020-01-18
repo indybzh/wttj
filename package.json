@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@welcome-ui/button": "^1.4.0",
         "@welcome-ui/core": "^1.4.0",
         "@welcome-ui/date-picker": "^1.4.0",
         "@welcome-ui/input-text": "^1.4.0",

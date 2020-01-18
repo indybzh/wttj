@@ -6,16 +6,8 @@ import styled from "styled-components";
 import JobList from "./job/job-list";
 
 import { ThemeProvider } from "@xstyled/styled-components";
-import { createTheme, GlobalStyle } from "@welcome-ui/core";
-
-const theme = createTheme({
-  texts: {
-    h2: {
-      "font-weight": "500",
-      "line-height": "1em"
-    }
-  }
-});
+import { GlobalStyle } from "@welcome-ui/core";
+import theme from "./theme";
 
 const App: React.FC = () => (
   <ThemeProvider theme={theme}>
@@ -31,8 +23,8 @@ const Layout = styled("div")`
     `linear-gradient(
         to bottom, 
         ${theme.colors.nude[400]}, 
-        ${theme.colors.nude[400]} 25%, 
-        ${theme.colors.light[900]} 25%
+        ${theme.colors.nude[400]} 30%,
+        ${theme.colors.light[900]} 30%
     )`};
   height: 100vh;
   margin: 0;

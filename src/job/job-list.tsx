@@ -5,6 +5,7 @@ import getJobs from "../api";
 import { Job, defaultStateFilters } from "../types";
 
 import JobFilters from "./job-filters";
+import JobListItem from "./job-list-item";
 
 const filtersReducer = (
   state: defaultStateFilters,
@@ -114,10 +115,7 @@ const JobList: React.FC = () => {
           <JobFilters filters={filters} dispatch={dispatch} />
           <List>
             {filteredJobs.map((job: Job) => (
-              <article key={job.id}>
-                {job.name} {job.contract_type.en} {job.office.name}
-                <button>See more</button>
-              </article>
+              <JobListItem key={job.id} job={job} onClick={() => {}} />
             ))}
           </List>
         </>
@@ -127,20 +125,20 @@ const JobList: React.FC = () => {
 };
 
 const Wrapper = styled("div")`
-  max-width: 700px;
+  max-width: ${({ theme }) => theme.breakpoints.md}px;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.nude[100]};
-  padding: 5px 10px;
-  min-height: 500px;
+  padding: 5px 20px;
+  min-height: 600px;
 `;
 
 const Title = styled("h2")`
   text-align: center;
-  ${({ theme }) => ({ ...theme.texts.h2 })}
+  ${({ theme }) => theme.texts.h2}
 `;
 
 const List = styled("ul")`
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 0;
 `;
 
