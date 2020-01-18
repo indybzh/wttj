@@ -6,5 +6,6 @@ declare module "@welcome-ui/date-picker";
 declare module "@welcome-ui/select";
 declare module "@welcome-ui/button";
 declare module "@welcome-ui/icons";
+declare module "@welcome-ui/pagination";
 
 declare module "@xstyled/styled-components";

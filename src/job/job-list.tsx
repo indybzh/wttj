@@ -7,6 +7,9 @@ import { Job, defaultStateFilters } from "../types";
 import JobFilters from "./job-filters";
 import JobListItem from "./job-list-item";
 import JobShow from "./job-show";
+import Loader from "../feedbacks/loader";
+import { Pagination } from "@welcome-ui/pagination";
+import usePagination from "../hooks/use-pagination";
 
 const filtersReducer = (
   state: defaultStateFilters,
@@ -38,10 +41,8 @@ const filtersReducer = (
 
 const JobList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
-
   const [jobSelected, setJobSelected] = useState();
 
   const [filters, dispatch] = useReducer(filtersReducer, {
@@ -52,6 +53,14 @@ const JobList: React.FC = () => {
     groupBy: "Group by",
     groupsBy: ["Group by"]
   });
+
+  const [
+    currentPage,
+    pageCount,
+    beginIndex,
+    endIndex,
+    setCurrentPage
+  ] = usePagination(filteredJobs);
 
   useEffect(() => {
     getJobs()
@@ -116,12 +125,14 @@ const JobList: React.FC = () => {
       <Title>Our offers</Title>
 
       {isLoading ? (
-        <div>loading...</div>
+        <WrapperLoader>
+          <Loader />
+        </WrapperLoader>
       ) : (
         <>
           <JobFilters filters={filters} dispatch={dispatch} />
           <List>
-            {filteredJobs.map((job: Job) => (
+            {filteredJobs.slice(beginIndex, endIndex).map((job: Job) => (
               <JobListItem
                 key={job.id}
                 job={job}
@@ -129,6 +140,16 @@ const JobList: React.FC = () => {
               />
             ))}
           </List>
+          {pageCount > 0 && (
+            <WrapperPagination>
+              <Pagination
+                aria-label="Pagination"
+                page={currentPage}
+                onChange={setCurrentPage}
+                pageCount={pageCount}
+              />
+            </WrapperPagination>
+          )}
           {jobSelected && (
             <Modal
               isOpen={true}
@@ -154,7 +175,11 @@ const Wrapper = styled("div")`
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.nude[100]};
   padding: 5px 20px;
-  min-height: 600px;
+  min-height: calc(100vh - 100px);
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    min-height: 100vh;
+  }
 `;
 
 const Title = styled("h2")`
@@ -163,8 +188,21 @@ const Title = styled("h2")`
 `;
 
 const List = styled("ul")`
-  margin-top: 20px;
+  margin: 20px 0px;
   padding: 0;
+`;
+
+const WrapperLoader = styled("div")`
+  height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const WrapperPagination = styled("div")`
+  text-align: center;
+  margin: 50px 0px;
 `;
 
 const modalStyle = {

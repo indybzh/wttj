@@ -8,6 +8,7 @@
     "@welcome-ui/date-picker": "^1.4.0",
     "@welcome-ui/icons": "^1.1.4",
     "@welcome-ui/input-text": "^1.4.0",
+    "@welcome-ui/pagination": "^1.2.0",
     "@welcome-ui/select": "^1.4.0",
     "@xstyled/styled-components": "^1.15.1",
     "@xstyled/system": "^1.15.1",

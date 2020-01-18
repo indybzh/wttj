@@ -1938,6 +1938,16 @@
     "@welcome-ui/utils" "^1.4.0"
     "@welcome-ui/variant-icon" "^1.4.0"
 
+"@welcome-ui/pagination@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@welcome-ui/pagination/-/pagination-1.2.0.tgz#5075aa59242145a43d8bd1b8dd4cefc15229e06a"
+  integrity sha512-Rxtewu/uSKsdFrZOvAswwDzAtt7htMpQAro3J8W/fkaAf/u0EbsP3QweumMvI5Q+J0HRr+5TDjqDyMYgkFaUPQ==
+  dependencies:
+    "@welcome-ui/icons.left" "^1.1.4"
+    "@welcome-ui/icons.right" "^1.1.4"
+    "@welcome-ui/system" "^1.1.4"
+    reakit "^1.0.0-beta.7"
+
 "@welcome-ui/select@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@welcome-ui/select/-/select-1.4.0.tgz#432ed91045c547f287015c286967d4ca6e9ede74"
