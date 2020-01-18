@@ -46,8 +46,8 @@ const JobList: React.FC = () => {
     publishedAfter: null,
     contractType: "Contract Type",
     contractTypes: ["Contract Type"],
-    groupBy: "Group By",
-    groupsBy: ["Group By"]
+    groupBy: "Group by",
+    groupsBy: ["Group by"]
   });
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const JobList: React.FC = () => {
       );
     }
 
-    if (groupBy !== "Group By") {
+    if (groupBy !== "Group by") {
       conditions.push((j: Job) => j.office.name === groupBy);
     }
 

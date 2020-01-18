@@ -14,6 +14,8 @@ const job: Job = {
   id: 1,
   name: "Backend Developer (Ruby / Elixir)",
   published_at: "2020-01-16T09:50:58.202+01:00",
+  description: "",
+  profile: "",
   contract_type: {
     en: "Full-Time"
   },

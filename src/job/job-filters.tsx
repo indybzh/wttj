@@ -21,7 +21,7 @@ const JobFilters: React.FC<JobFiltersProps> = ({ filters, dispatch }) => {
 
   return (
     <Form>
-      <WrapperField width={35}>
+      <WrapperField width={[35, 100]}>
         <InputText
           isClearable
           placeholder="Your dream job?"
@@ -36,7 +36,7 @@ const JobFilters: React.FC<JobFiltersProps> = ({ filters, dispatch }) => {
         />
       </WrapperField>
       {filters.contractTypes.length > 0 && (
-        <WrapperField width={25}>
+        <WrapperField width={[25, 100]}>
           <Select
             value={filters.contractType}
             options={filters.contractTypes.map(c => ({
@@ -53,12 +53,15 @@ const JobFilters: React.FC<JobFiltersProps> = ({ filters, dispatch }) => {
           />
         </WrapperField>
       )}
-      <WrapperField width={15}>
-        <DatePicker
+      <WrapperField width={[15, 49]}>
+        <StyledDatePicker
           value={filters.publishedAfter}
           ref={datePickerRef}
           placeholder="Date"
           maxDate={new Date()}
+          popperProps={{
+            placement: "bottom-start"
+          }}
           onChange={(date: string) => {
             dispatch({
               type: "update_filter",
@@ -69,7 +72,7 @@ const JobFilters: React.FC<JobFiltersProps> = ({ filters, dispatch }) => {
         />
       </WrapperField>
       {filters.groupsBy.length > 0 && (
-        <WrapperField width={20}>
+        <WrapperField width={[20, 49]}>
           <Select
             value={filters.groupBy}
             options={filters.groupsBy.map(g => ({
@@ -95,10 +98,34 @@ const Form = styled("form")`
   justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    flex-wrap: wrap;
+
+    & > div {
+      margin-bottom: 5px;
+    }
+  }
 `;
 
 const WrapperField = styled(({ width, ...rest }) => <div {...rest} />)`
-  width: ${props => props.width}%;
+  width: ${props => props.width[0]}%;
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    width: ${props => props.width[1]}%;
+  }
+
+  /* workarround datepicker */
+  & .react-datepicker-wrapper {
+    width: 100% !important;
+  }
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  ::placeholder {
+    font-weight: ${({ theme }) => theme.fields.default["font-weight"]};
+    color: ${({ theme }) => theme.fields.default["color"]};
+  }
 `;
 
 export default JobFilters;

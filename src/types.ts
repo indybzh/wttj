@@ -1,8 +1,8 @@
 export type Job = {
   id: number;
   name: string;
-  description?: string;
-  profile?: string;
+  description: string;
+  profile: string;
   published_at: string;
   contract_type: {
     en: string;

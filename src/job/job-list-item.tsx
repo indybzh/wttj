@@ -17,9 +17,9 @@ const JobListItem: React.FC<JobListItemProps> = ({ job, onClick }) => (
           {job.contract_type.en} - {job.office.name}
         </JobInfos>
       </div>
-      <Button variant="secondary" onClick={onClick}>
+      <StyledButton variant="quaternary" onClick={onClick}>
         See more
-      </Button>
+      </StyledButton>
     </Article>
   </Li>
 );
@@ -35,6 +35,12 @@ const Article = styled("article")`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const JobName = styled("h3")`
@@ -45,6 +51,15 @@ const JobName = styled("h3")`
 const JobInfos = styled("span")`
   ${({ theme }) => theme.texts.subtitle1};
   color: ${({ theme }) => theme.colors.nude[500]};
+`;
+
+const StyledButton = styled(Button)`
+  padding: 0px 20px;
+  min-width: 100px;
+
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    align-self: flex-end;
+  }
 `;
 
 export default JobListItem;

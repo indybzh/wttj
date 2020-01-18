@@ -12,16 +12,27 @@ export default createTheme({
     }
   },
   buttons: {
-    secondary: {
+    quaternary: {
       "background-color": "#E5E5E5",
       "text-transform": "none",
-      "border-radius": 0,
-      "border-color": "#828282",
+      "border-radius": 2,
+      "border-color": "#b7b7b7",
       "border-width": "thin",
       "font-size": "0.8em",
       "font-weight": "500",
       "letter-spacing": 0,
-      padding: "0px 20px !important"
+      color: "black",
+      "&:hover": {
+        "background-color": "#eee !important",
+        color: "black !important"
+      }
+    }
+  },
+  fields: {
+    default: {
+      "font-weight": "500",
+      color: "black",
+      "border-color": "#b7b7b7"
     }
   }
 });
