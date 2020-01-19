@@ -1,6 +1,6 @@
 import React from "react";
 import { Job } from "../types";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Button } from "@welcome-ui/button";
 
 type JobListItemProps = {
@@ -26,12 +26,25 @@ const JobListItem: React.FC<JobListItemProps> = React.memo(
   )
 );
 
+const fadeInDown = keyframes`
+  from {
+    opacity: 0.5;
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+`;
+
 const Li = styled("li")`
   list-style: none;
   background-color: ${({ theme }) => theme.colors.light[700]};
   padding: 25px 20px;
   margin-bottom: 10px;
   transition: background-color 0.3s;
+  animation: ${fadeInDown} 0.2s linear;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.light[900]};

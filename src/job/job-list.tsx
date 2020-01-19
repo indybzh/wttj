@@ -145,7 +145,10 @@ const JobList: React.FC = () => {
               <Pagination
                 aria-label="Pagination"
                 page={currentPage}
-                onChange={setCurrentPage}
+                onChange={(page: number) => {
+                  setCurrentPage(page);
+                  window.scrollTo(0, 0);
+                }}
                 pageCount={pageCount}
               />
             </WrapperPagination>
@@ -176,8 +179,12 @@ const Wrapper = styled("div")`
   background-color: ${({ theme }) => theme.colors.nude[100]};
   padding: 5px 20px;
   min-height: calc(100vh - 100px);
+  margin-top: 100px;
+  margin-bottom: 100px;
 
   @media all and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
     min-height: 100vh;
   }
 `;
